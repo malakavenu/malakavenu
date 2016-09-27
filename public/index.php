@@ -10,7 +10,7 @@
 		<meta name="description" content="Karthik Rajan / Software Developer">
 	  <meta name="author" content="Karthik Rajan">
 
-	  <title>Karthik Rajan / Software Engineer</title>
+	  <title>Malaka Venugopal Reddy / Software Engineer</title>
 
 
 	  <link rel="stylesheet" href="css/style.css">
