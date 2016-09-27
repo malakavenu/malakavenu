@@ -28,10 +28,10 @@
 			<div class="info-main">
 				<div class="info__elevator">
 					<h1 class="info__elevator-text">
-						I'm Karthik Rajan <br/> Software Engineer
+						I'm Malaka Venugopal Reddy <br/> Software Engineer
 					</h1>
 				</div>
-				<a href="mailto:emailwithkarthik@gmail.com" class="info__button--dark">Get In Touch.</a>
+				<a href="mailto:venu.malaka@gmail.com" class="info__button--dark">Get In Touch.</a>
 			</div>
 			<div class="info-footer">
 				<div class="info-footer__social">
@@ -48,7 +48,7 @@
 
 				<div class="main__tag">About Me</div>
 				<p class="main__copy">
-          For the past 3 years, I have been working in the area of web application development.
+          For the past 2 years, I have been working in the area of web application development.
           My primary areas of interest are Web application Architecting, Designing and development.
           I also focus on areas like Machine Learning, Deep Learning in the field of
           Artificial Intellingence and want to build systems around it to improve the lives of the people.
