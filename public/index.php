@@ -10,7 +10,7 @@
 		<meta name="description" content="Karthik Rajan / Software Developer">
 	  <meta name="author" content="Karthik Rajan">
 
-	  <title>Malaka Venugopal Reddy / Software Engineer</title>
+	  <title> Malaka Venugopal Reddy / Software Engineer </title>
 
 
 	  <link rel="stylesheet" href="css/style.css">
@@ -35,9 +35,9 @@
 			</div>
 			<div class="info-footer">
 				<div class="info-footer__social">
-					<a href="https://twitter.com/karthikrajan_s" target="_blank" class="fa fa-twitter info-footer__social-icon--twitter"></a>
-					<a href="https://github.com/rajankarthiks" target="_blank" class="fa fa-github info-footer__social-icon--github"></a>
-					<a href="https://in.linkedin.com/in/rajankarthiks" target="_blank" class="fa fa-linkedin info-footer__social-icon--linkedin"></a>
+					<a href="https://twitter.com/malakavenu" target="_blank" class="fa fa-twitter info-footer__social-icon--twitter"></a>
+					<a href="https://github.com/malakavenu" target="_blank" class="fa fa-github info-footer__social-icon--github"></a>
+					<a href="https://in.linkedin.com/in/malakavenu" target="_blank" class="fa fa-linkedin info-footer__social-icon--linkedin"></a>
 				</div>
 			</div>
 		</div>
