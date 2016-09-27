@@ -100,7 +100,7 @@
 			$.ajax({
 	        type: "POST",
 	        url: "email.php",
-	        data: $(form).serialize(),
+	        data: $("form").serialize(),
 	        success: function(){
 	        $('.success').fadeIn(1000);
 	        }
