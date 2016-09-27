@@ -33,6 +33,21 @@
 				</div>
 				<a href="mailto:venu.malaka@gmail.com" class="info__button--dark">Get In Touch.</a>
 			</div>
+			<div>
+				<form>
+					<section id="left">
+				      <label for="form_name">Name</label>
+				      <input name="form_name" id="form_name" type="text" >
+				      <label for="form_email">Email</label>
+				      <input name="form_email" id="form_email" type="email" >
+					</section>
+					<section id="right">
+				      <label for="form_msg">Message</label>
+				      <textarea name="form_msg" id="form_msg"></textarea>
+				      <input id="submit" class="button" name="submit" type="submit" value="Send">
+					</section>
+				</form>
+			</div>
 			<div class="info-footer">
 				<div class="info-footer__social">
 					<a href="https://twitter.com/malakavenu" target="_blank" class="fa fa-twitter info-footer__social-icon--twitter"></a>
@@ -80,7 +95,16 @@
 			</div>
 
 		</div>
-
+		<script type="text/javascript">
+			$.ajax({
+	        type: "POST",
+	        url: "email.php",
+	        data: $(form).serialize(),
+	        success: function(){
+	        $('.success').fadeIn(1000);
+	        }
+    	  });
+		</script>
 	</body>
 
 </html>
