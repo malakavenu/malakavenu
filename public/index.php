@@ -25,6 +25,9 @@
 	<body>
 
 		<div class="container-info">
+		<div class="img-profile">
+			<img class="img-circle" src="images/vg.jpg">
+		</div>
 			<div class="info-main">
 				<div class="info__elevator">
 					<h1 class="info__elevator-text">
@@ -32,6 +35,12 @@
 					</h1>
 				</div>
 				<a href="mailto:venu.malaka@gmail.com" class="info__button--dark">Get In Touch.</a>
+				<div>
+				<form action="contact.php">
+					<textarea name="content"></textarea>
+					<input type="submit" value="Contact me"></input>
+					</form>
+				</div>
 			</div>
 			<div class="info-footer">
 				<div class="info-footer__social">
