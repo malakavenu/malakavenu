@@ -4,7 +4,7 @@ var_dump($_REQUEST);
   $comment = $_REQUEST['content'];
   
   //send email
-  mail($admin_email, "subject", $comment, "From:" . $email);
+  mail($admin_email, "subject", $comment, "From:" . $admin_email);
   
   //Email response
   echo "Thank you for contacting us!";
