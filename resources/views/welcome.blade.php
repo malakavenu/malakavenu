@@ -13,7 +13,7 @@
       <title> Malaka Venugopal Reddy / Software Engineer </title>
 
 
-      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="css/app.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
       <!--[if lt IE 9]>
@@ -25,9 +25,9 @@
     <body>
 
         <div class="container-info">
-        <div class="img-profile">
+        <!-- <div class="img-profile">
             <img class="img-circle" src="images/vg.jpg">
-        </div>
+        </div> -->
             <div class="info-main">
                 <div class="info__elevator">
                     <h1 class="info__elevator-text">
