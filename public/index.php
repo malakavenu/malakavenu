@@ -1,95 +1,58 @@
-<!doctype html>
+<?php
 
+/**
+ * Laravel - A PHP Framework For Web Artisans
+ *
+ * @package  Laravel
+ * @author   Taylor Otwell <taylor@laravel.com>
+ */
 
-<html lang="en">
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader for
+| our application. We just need to utilize it! We'll simply require it
+| into the script here so that we don't have to worry about manual
+| loading any of our classes later on. It feels nice to relax.
+|
+*/
 
-	<head>
+require __DIR__.'/../bootstrap/autoload.php';
 
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width">
-		<meta name="description" content="Karthik Rajan / Software Developer">
-	  <meta name="author" content="Karthik Rajan">
+/*
+|--------------------------------------------------------------------------
+| Turn On The Lights
+|--------------------------------------------------------------------------
+|
+| We need to illuminate PHP development, so let us turn on the lights.
+| This bootstraps the framework and gets it ready for use, then it
+| will load up this application so that we can run it and send
+| the responses back to the browser and delight our users.
+|
+*/
 
-	  <title> Malaka Venugopal Reddy / Software Engineer </title>
+$app = require_once __DIR__.'/../bootstrap/app.php';
 
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Once we have the application, we can handle the incoming request
+| through the kernel, and send the associated response back to
+| the client's browser allowing them to enjoy the creative
+| and wonderful application we have prepared for them.
+|
+*/
 
-	  <link rel="stylesheet" href="css/style.css">
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
-	  <!--[if lt IE 9]>
-	  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	  <![endif]-->
+$response = $kernel->handle(
+    $request = Illuminate\Http\Request::capture()
+);
 
-		</head>
+$response->send();
 
-	<body>
-
-		<div class="container-info">
-		<div class="img-profile">
-			<img class="img-circle" src="images/vg.jpg">
-		</div>
-			<div class="info-main">
-				<div class="info__elevator">
-					<h1 class="info__elevator-text">
-						I'm Malaka Venugopal Reddy <br/> Software Engineer
-					</h1>
-				</div>
-				<a href="mailto:venu.malaka@gmail.com" class="info__button--dark">Get In Touch.</a>
-				<div>
-				<form action="contact.php">
-					<textarea name="content"></textarea>
-					<input type="submit" value="Contact me"></input>
-					</form>
-				</div>
-			</div>
-			<div class="info-footer">
-				<div class="info-footer__social">
-					<a href="https://twitter.com/malakavenu" target="_blank" class="fa fa-twitter info-footer__social-icon--twitter"></a>
-					<a href="https://github.com/malakavenu" target="_blank" class="fa fa-github info-footer__social-icon--github"></a>
-					<a href="https://in.linkedin.com/in/malakavenu" target="_blank" class="fa fa-linkedin info-footer__social-icon--linkedin"></a>
-				</div>
-			</div>
-		</div>
-
-		<div class="container-main">
-			<a name="top-desktop"></a>
-			<div class="main__container-about">
-
-				<div class="main__tag">About Me</div>
-				<p class="main__copy">
-          For the past 2 years, I have been working in the area of web application development.
-          My primary areas of interest are Web application Architecting, Designing and development.
-          I also focus on areas like Machine Learning, Deep Learning in the field of
-          Artificial Intellingence and want to build systems around it to improve the lives of the people.
-				</p>
-
-			</div>
-
-			<div class="main__container-projects">
-
-				<div class="main__tag">Skills</div>
-
-          <ul class="main__list">
-  					<li class="main__list-item">HTML / CSS</li>
-            <li class="main__list-item">Object Oriented PHP</li>
-  					<li class="main__list-item">Laravel &amp; other PHP Frameworks</li>
-            <li class="main__list-item">JS / Angular JS</li>
-            <li class="main__list-item">MySQL</li>
-            <li class="main__list-item">GIT / SVN</li>
-            <li class="main__list-item">WebRTC</li>
-            <li class="main__list-item">Web Sockets</li>
-            <li class="main__list-item">Material Design / Angular Material</li>
-            <li class="main__list-item">PHPUnit / PHPSpec</li>
-            <li class="main__list-item">Amazon Web Services</li>
-            <li class="main__list-item">Agile / Scrum Methodologies</li>
-  				</ul>
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</body>
-
-</html>
+$kernel->terminate($request, $response);
