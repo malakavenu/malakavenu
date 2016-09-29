@@ -36,7 +36,7 @@
                 </div>
                 <a href="mailto:venu.malaka@gmail.com" class="info__button--dark">Get In Touch.</a>
                 <div>
-                <form action="/contact">
+                <form action="/contact" method="Post">
                     <textarea name="content"></textarea>
                     <input type="submit" value="Contact me"></input>
                     </form>
