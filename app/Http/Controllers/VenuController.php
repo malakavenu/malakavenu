@@ -16,5 +16,7 @@ class VenuController extends Controller
 
             $m->to('venu.malaka@gmail.com','Malaka Venu')->subject('Email From malakavenu.com');
         });
+
+       return redirect('/');
     }
 }
