@@ -514,12 +514,14 @@ h2 {
   border: 1px solid #36404a;
   border-radius: 3px;
   margin-top: 15px;
+  cursor: pointer;
 }
 #submit:hover {
   color: #fff;
   font-weight: 600;
   background: #36404a;
   border: 1px solid #fff;
+  cursor: pointer;
 }
 textarea:focus {
   border: none;
