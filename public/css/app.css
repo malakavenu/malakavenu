@@ -283,9 +283,6 @@ h2 {
     color: white;
     background-color: #1560FB; }
   @media (min-width: 768px) {
-    textarea {
-      width: 250px;
-    }
     .info__button, .info__button--dark {
       margin: 40px auto auto auto; } }
   .info__button--dark {
@@ -296,9 +293,6 @@ h2 {
       color: #36404A;
       background-color: rgba(255, 255, 255, 0.86); }
     @media (min-width: 768px) {
-       textarea {
-      width: 250px;
-    }
       .info__button--dark {
         margin: 40px auto auto auto; } }
 .info-footer__kitchener {
@@ -537,4 +531,5 @@ textarea {
   border: none;
   padding: 8px;
   resize: none;
+  width: 70%;
 }
