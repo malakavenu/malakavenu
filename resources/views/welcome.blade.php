@@ -13,7 +13,7 @@
       <title> Malaka Venugopal Reddy / Software Engineer </title>
 
 
-      <link rel="stylesheet" href="css/app.css">
+      <link rel="stylesheet" href="css/app.css?v-1.0">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
       <!--[if lt IE 9]>
@@ -38,7 +38,7 @@
                 <div>
                 <form action="/contact" method="Post" class='formfields'>
                     {{ csrf_field() }}
-                   <textarea required id="content" name="content" rows="4" cols="50" placeholder="message me"></textarea><br>
+                   <textarea required id="content" name="content" rows="4" cols="50" placeholder="Enter your message ..."></textarea><br>
                     <input type="submit" value="Contact me" id="submit"></input>
                     </form>
                 </div>
