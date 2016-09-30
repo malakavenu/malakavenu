@@ -493,3 +493,40 @@ h2 {
       margin-left: 110px; } }
   .main__resume:hover a {
     opacity: 0.6; }
+.img-circle {
+    border-radius: 50%;
+    width: 105px;
+    height: 100px;
+}
+.img-profile {
+    position: relative;
+    top: 25%;
+    text-align: center;
+}
+.formfields {
+  margin-top: 20px;
+  text-align: center;
+}
+#submit {
+  padding: 7px;
+  color: #36404a;
+  font-weight: 600;
+  border: 1px solid #36404a;
+  border-radius: 3px;
+  margin-top: 15px;
+}
+#submit:hover {
+  color: #fff;
+  font-weight: 600;
+  background: #36404a;
+  border: 1px solid #fff;
+}
+textarea:focus {
+  border: none;
+  outline: none;
+}
+textarea {
+  border: none;
+  padding: 8px;
+  resize: none;
+}

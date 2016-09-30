@@ -37,8 +37,8 @@
                 <a href="mailto:venu.malaka@gmail.com" class="info__button--dark">Get In Touch.</a>
                 <div>
                 <form action="/contact" method="Post">
-                {{ csrf_field() }}
-                    <textarea name="content"></textarea>
+                    {{ csrf_field() }}
+                    <textarea required id="content" name="content" rows="4" cols="50"></textarea><br>
                     <input type="submit" value="Contact me"></input>
                     </form>
                 </div>
@@ -90,7 +90,6 @@
             </div>
 
         </div>
-
     </body>
 
 </html>
