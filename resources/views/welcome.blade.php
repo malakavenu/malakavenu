@@ -7,8 +7,8 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <meta name="description" content="Karthik Rajan / Software Developer">
-      <meta name="author" content="Karthik Rajan">
+        <meta name="description" content="Malaka Venugopal Reddy / Software Developer">
+        <meta name="author" content="Malaka Venugopal Reddy">
 
       <title> Malaka Venugopal Reddy / Software Engineer </title>
 
