@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 <html lang="en">
@@ -7,9 +7,9 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <meta name="description" content="Malaka Venugopal Reddy / Software Developer Front End Developer">
+        <meta name="description" content="Malaka Venugopal Reddy / Software Engineer ( Front End Developer )">
         <meta name="author" content="Malaka Venugopal Reddy Front End Developer">
-        <meta name="keywords" content="Malaka Venugopal Reddy / Software Developer Front End Developer">
+        <meta name="keywords" content="Malaka Venugopal Reddy / Software Engineer">
 
       <title> Malaka Venugopal Reddy / Software Engineer </title>
 
@@ -27,13 +27,14 @@
 
         <div class="container-info">
         <!-- <div class="img-profile">
-            <img class="img-circle" src="images/vg.jpg">
+            <img class="img-circle" src="images/vg.jpg" alt="profile">
         </div> -->
             <div class="info-main">
                 <div class="info__elevator">
                     <h1 class="info__elevator-text">
-                        I'm Malaka Venugopal Reddy <br/> Software Engineer
+                        I'm Malaka Venugopal Reddy
                     </h1>
+                    <h2 class="info__elevator-text">Software Engineer</h2>
                 </div>
                 <a href="mailto:venu.malaka@gmail.com" class="info__button--dark">Get In Touch.</a>
                 <div>
@@ -49,6 +50,7 @@
                     <a href="https://twitter.com/malakavenu" target="_blank" class="fa fa-twitter info-footer__social-icon--twitter"></a>
                     <a href="https://github.com/malakavenu" target="_blank" class="fa fa-github info-footer__social-icon--github"></a>
                     <a href="https://in.linkedin.com/in/malakavenu" target="_blank" class="fa fa-linkedin info-footer__social-icon--linkedin"></a>
+                    <a href="https://www.facebook.com/venu458458" target="_blank" class="fa fa-facebook info-footer__social-icon--facebook"></a>
                 </div>
             </div>
         </div>
