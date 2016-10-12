@@ -32,8 +32,9 @@
             <div class="info-main">
                 <div class="info__elevator">
                     <h1 class="info__elevator-text">
-                        I'm Malaka Venugopal Reddy <br/> Software Engineer
+                        I'm Malaka Venugopal Reddy
                     </h1>
+                    <h2 class="info__elevator-text">Software Engineer</h2>
                 </div>
                 <a href="mailto:venu.malaka@gmail.com" class="info__button--dark">Get In Touch.</a>
                 <div>
