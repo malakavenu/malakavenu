@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width">
         <meta name="description" content="Malaka Venugopal Reddy / Software Engineer ( Front End Developer )">
         <meta name="author" content="Malaka Venugopal Reddy Front End Developer">
-        <meta name="keywords" content="Malaka Venugopal Reddy / Software Engineer ( Front End Developer )">
+        <meta name="keywords" content="Malaka Venugopal Reddy / Software Engineer ( Front End Developer ) .">
 
       <title> Malaka Venugopal Reddy / Software Engineer </title>
 
@@ -49,6 +49,7 @@
                     <a href="https://twitter.com/malakavenu" target="_blank" class="fa fa-twitter info-footer__social-icon--twitter"></a>
                     <a href="https://github.com/malakavenu" target="_blank" class="fa fa-github info-footer__social-icon--github"></a>
                     <a href="https://in.linkedin.com/in/malakavenu" target="_blank" class="fa fa-linkedin info-footer__social-icon--linkedin"></a>
+                    <a href="https://www.facebook.com/venu458458" target="_blank" class="fa fa-facebook info-footer__social-icon--facebook"></a>
                 </div>
             </div>
         </div>
