@@ -7,8 +7,9 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <meta name="description" content="Malaka Venugopal Reddy / Software Developer">
-        <meta name="author" content="Malaka Venugopal Reddy">
+        <meta name="description" content="Malaka Venugopal Reddy / Software Developer Front End Developer">
+        <meta name="author" content="Malaka Venugopal Reddy Front End Developer">
+        <meta name="keywords" content="Malaka Venugopal Reddy / Software Developer Front End Developer">
 
       <title> Malaka Venugopal Reddy / Software Engineer </title>
 
