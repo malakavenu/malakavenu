@@ -56,7 +56,8 @@ h2 {
     #tag, .info__tag, .main__tag {
       margin: 5px 30px 0 0; } }
 
-#fadeUp-animation, .info-footer__kitchener, .info-footer__social-icon, .info-footer__social-icon--dribbble, .info-footer__social-icon--linkedin, .info-footer__social-icon--instagram, .info-footer__social-icon--github, .info-footer__social-icon--twitter, .main__container-about, .main__container-projects, .main__container-clients, .main__container-experience, .main__container-resume, .main__resume {
+#fadeUp-animation, .info-footer__kitchener, .info-footer__social-icon, .info-footer__social-icon--dribbble, .info-footer__social-icon--facebook, .
+, .info-footer__social-icon--instagram, .info-footer__social-icon--github, .info-footer__social-icon--twitter, .main__container-about, .main__container-projects, .main__container-clients, .main__container-experience, .main__container-resume, .main__resume {
   opacity: 0;
   animation: fadeUp ease-in 1;
   animation-fill-mode: forwards;
@@ -321,7 +322,7 @@ h2 {
   right: 20px;
   bottom: 20px;
   height: 27px; }
-  .info-footer__social-icon, .info-footer__social-icon--dribbble, .info-footer__social-icon--linkedin, .info-footer__social-icon--instagram, .info-footer__social-icon--github, .info-footer__social-icon--twitter {
+  .info-footer__social-icon, .info-footer__social-icon--dribbble,.info-footer__social-icon--facebook, .info-footer__social-icon--linkedin, .info-footer__social-icon--instagram, .info-footer__social-icon--github, .info-footer__social-icon--twitter {
     float: right;
     margin-left: 10px;
     padding-top: 4px;
@@ -329,17 +330,17 @@ h2 {
     text-decoration: none;
     float: right;
     transition: 0.3s color ease; }
-    .info-footer__social-icon:hover, .info-footer__social-icon--dribbble:hover, .info-footer__social-icon--linkedin:hover, .info-footer__social-icon--instagram:hover, .info-footer__social-icon--github:hover, .info-footer__social-icon--twitter:hover {
+    .info-footer__social-icon:hover, .info-footer__social-icon--dribbble:hover, .info-footer__social-icon--facebook:hover, .info-footer__social-icon--linkedin:hover, .info-footer__social-icon--instagram:hover, .info-footer__social-icon--github:hover, .info-footer__social-icon--twitter:hover {
       color: #768198; }
     .info-footer__social-icon--dribbble {
       animation-delay: 1.2s; }
       @media (max-width: 768px) {
         .info-footer__social-icon--dribbble {
           animation-delay: 0.6s; } }
-    .info-footer__social-icon--linkedin {
+    .info-footer__social-icon--linkedin,.info-footer__social-icon--facebook {
       animation-delay: 1.4s; }
       @media (max-width: 768px) {
-        .info-footer__social-icon--linkedin {
+        .info-footer__social-icon--linkedin,.info-footer__social-icon--facebook {
           animation-delay: 0.8s; } }
     .info-footer__social-icon--instagram {
       animation-delay: 1.6s; }
