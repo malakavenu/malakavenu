@@ -7,9 +7,9 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <meta name="description" content="Malaka Venugopal Reddy / Software Developer Front End Developer">
+        <meta name="description" content="Malaka Venugopal Reddy / Software Engineer ( Front End Developer )">
         <meta name="author" content="Malaka Venugopal Reddy Front End Developer">
-        <meta name="keywords" content="Malaka Venugopal Reddy / Software Developer Front End Developer">
+        <meta name="keywords" content="Malaka Venugopal Reddy / Software Engineer ( Front End Developer )">
 
       <title> Malaka Venugopal Reddy / Software Engineer </title>
 
@@ -27,7 +27,7 @@
 
         <div class="container-info">
         <!-- <div class="img-profile">
-            <img class="img-circle" src="images/vg.jpg">
+            <img class="img-circle" src="images/vg.jpg" alt="profile">
         </div> -->
             <div class="info-main">
                 <div class="info__elevator">
