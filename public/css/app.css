@@ -534,3 +534,6 @@ textarea {
   resize: none;
   width: 70%;
 }
+h2 {
+  font-weight: 300;
+}
