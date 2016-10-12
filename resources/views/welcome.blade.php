@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 <html lang="en">
@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width">
         <meta name="description" content="Malaka Venugopal Reddy / Software Engineer ( Front End Developer )">
         <meta name="author" content="Malaka Venugopal Reddy Front End Developer">
-        <meta name="keywords" content="Malaka Venugopal Reddy / Software Engineer ( Front End Developer ) .">
+        <meta name="keywords" content="Malaka Venugopal Reddy / Software Engineer">
 
       <title> Malaka Venugopal Reddy / Software Engineer </title>
 
