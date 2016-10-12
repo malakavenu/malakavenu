@@ -11,7 +11,7 @@
         <meta name="author" content="Malaka Venugopal Reddy Front End Developer">
         <meta name="keywords" content="Malaka Venugopal Reddy / Software Engineer">
      	<title> Malaka Venugopal Reddy / Software Engineer </title>
-      	<link rel="stylesheet" href="css/font-awesome.min">
+      	<link rel="stylesheet" href="css/font-awesome.min.css">
       	<link rel="stylesheet" href="css/app.css?v-1.0">
       	<!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
