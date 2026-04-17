@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Srimitra Lifestyle — Expenditure Analysis (Oct 2025 – Mar 2026)</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #22252f;
+    --border: #2a2d3a;
+    --text: #e4e4e8;
+    --text2: #9ca3af;
+    --text3: #6b7280;
+    --accent: #6366f1;
+    --accent2: #818cf8;
+    --green: #34d399;
+    --green-bg: rgba(52,211,153,0.12);
+    --red: #f87171;
+    --red-bg: rgba(248,113,113,0.12);
+    --amber: #fbbf24;
+    --amber-bg: rgba(251,191,36,0.12);
+    --blue: #60a5fa;
+    --blue-bg: rgba(96,165,250,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* Header */
+  .header { margin-bottom: 32px; }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #e4e4e8, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+  }
+  .header p { color: var(--text2); font-size: 14px; }
+
+  /* Stat Cards */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--accent2);
+  }
+  .stat-value.up { color: var(--red); }
+  .stat-value.neutral { color: var(--text); }
+  .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text3);
+    margin-top: 6px;
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .tab {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text2);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab:hover { border-color: var(--accent); color: var(--text); }
+  .tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Section */
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text2);
+    margin: 20px 0 8px 0;
+  }
+  .section-desc {
+    font-size: 13px;
+    color: var(--text3);
+    margin-bottom: 16px;
+  }
+
+  /* Charts */
+  .chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+  .chart-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .chart-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Donut */
+  .donut-wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .donut-center {
+    font-size: 18px;
+    font-weight: 700;
+    fill: var(--text);
+  }
+  .donut-sub {
+    font-size: 10px;
+    fill: var(--text3);
+  }
+  .legend { font-size: 12px; }
+  .legend-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 0;
+    cursor: default;
+  }
+  .legend-row:hover { opacity: 0.8; }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .legend-name { flex: 1; color: var(--text2); }
+  .legend-val { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  /* Bar Chart */
+  .hbar { margin: 6px 0; }
+  .hbar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .hbar-label {
+    width: 160px;
+    font-size: 12px;
+    color: var(--text2);
+    text-align: right;
+    padding-right: 12px;
+    flex-shrink: 0;
+  }
+  .hbar-track {
+    flex: 1;
+    height: 12px;
+    background: var(--surface2);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+  .hbar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.6s ease;
+  }
+  .hbar-val {
+    width: 70px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: right;
+    padding-left: 10px;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Grouped bar */
+  .gbar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .gbar-label {
+    width: 170px;
+    font-size: 11px;
+    color: var(--text2);
+    text-align: right;
+    padding-right: 12px;
+    flex-shrink: 0;
+  }
+  .gbar-bars { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+  .gbar-track {
+    height: 10px;
+    background: var(--surface2);
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  .gbar-fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.6s ease;
+  }
+  .gbar-val {
+    width: 70px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: right;
+    padding-left: 10px;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+    color: var(--text2);
+  }
+
+  /* Spark bars */
+  .spark-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .spark-col { text-align: center; }
+  .spark-bar-area {
+    height: 130px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .spark-bar {
+    width: 40px;
+    border-radius: 6px 6px 0 0;
+    position: relative;
+    transition: height 0.5s ease;
+  }
+  .spark-bar .sv {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .spark-month { font-size: 13px; font-weight: 600; }
+  .spark-year { font-size: 11px; color: var(--text3); }
+
+  /* Table */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin: 12px 0 20px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  thead th {
+    background: var(--surface2);
+    color: var(--text2);
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+  }
+  tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  tbody tr:hover { background: rgba(99,102,241,0.06); }
+  tbody tr:last-child td { border-bottom: none; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .total-row td {
+    font-weight: 700;
+    background: rgba(99,102,241,0.1) !important;
+    border-top: 2px solid var(--accent);
+  }
+
+  /* Pills */
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .pill.up { background: var(--red-bg); color: var(--red); }
+  .pill.down { background: var(--green-bg); color: var(--green); }
+  .pill.flat { background: rgba(107,114,128,0.15); color: var(--text3); }
+  .pill.warn { background: var(--amber-bg); color: var(--amber); }
+
+  /* Insight cards */
+  .insight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .insight {
+    padding: 16px;
+    border-radius: 10px;
+    border-left: 4px solid;
+  }
+  .insight.g { background: var(--green-bg); border-color: var(--green); }
+  .insight.r { background: var(--red-bg); border-color: var(--red); }
+  .insight.a { background: var(--amber-bg); border-color: var(--amber); }
+  .insight.b { background: var(--blue-bg); border-color: var(--blue); }
+  .insight-t { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .insight-d { font-size: 12px; color: var(--text2); line-height: 1.4; }
+
+  /* Vendor cards */
+  .vendor-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .vcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    transition: border-color 0.2s;
+  }
+  .vcard:hover { border-color: var(--accent); }
+  .vcard-name { font-weight: 700; font-size: 13px; margin-bottom: 2px; }
+  .vcard-svc { font-size: 11px; color: var(--text3); margin-bottom: 10px; }
+  .vcard-amt { font-size: 22px; font-weight: 700; color: var(--accent2); }
+  .vcard-detail { font-size: 11px; color: var(--text2); margin-top: 4px; }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 24px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 11px;
+    color: var(--text3);
+    border-top: 1px solid var(--border);
+    margin-top: 32px;
+  }
+
+  /* Tooltip */
+  .tooltip-host { position: relative; }
+  .tooltip-host:hover .tooltip { display: block; }
+  .tooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .chart-grid { grid-template-columns: 1fr; }
+    .vendor-grid { grid-template-columns: repeat(2, 1fr); }
+    .insight-grid { grid-template-columns: 1fr; }
+    .spark-row { grid-template-columns: repeat(3, 1fr); }
+    .hbar-label, .gbar-label { width: 100px; font-size: 10px; }
+  }
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .vendor-grid { grid-template-columns: 1fr; }
+    .spark-row { grid-template-columns: repeat(2, 1fr); }
+    .container { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <h1>Srimitra Lifestyle — Expenditure Analysis</h1>
+    <p>Oct 2025 – Mar 2026 &nbsp;|&nbsp; Q4 FY25 vs Q1 FY26</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value">&#8377;22.24L</div>
+      <div class="stat-label">Q4 2025 (Oct–Dec)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">&#8377;25.73L</div>
+      <div class="stat-label">Q1 2026 (Jan–Mar)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value up">+15.7%</div>
+      <div class="stat-label">Quarter Change</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value neutral">&#8377;7.99L</div>
+      <div class="stat-label">Monthly Average</div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-tab="overview">Category Overview</button>
+    <button class="tab" data-tab="monthly">Monthly Trend</button>
+    <button class="tab" data-tab="vendors">Top Vendors</button>
+    <button class="tab" data-tab="onetime">One-time Expenses</button>
+    <button class="tab" data-tab="insights">Key Insights</button>
+  </div>
+
+  <!-- ═══ TAB 1: OVERVIEW ═══ -->
+  <div class="tab-panel active" id="panel-overview">
+    <div class="chart-grid">
+      <div class="chart-box">
+        <div class="chart-title">Spending Distribution (6 Months)</div>
+        <div class="donut-wrap">
+          <svg width="200" height="200" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="80" fill="none" stroke="#2a2d3a" stroke-width="28"/>
+            <circle cx="100" cy="100" r="80" fill="none" stroke="#3b82f6" stroke-width="28"
+                    stroke-dasharray="160 503" stroke-dashoffset="125.7" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="80" fill="none" stroke="#8b5cf6" stroke-width="28"
+                    stroke-dasharray="104 503" stroke-dashoffset="-34.3" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="80" fill="none" stroke="#f59e0b" stroke-width="28"
+                    stroke-dasharray="61.4 503" stroke-dashoffset="-138.3" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="80" fill="none" stroke="#10b981" stroke-width="28"
+                    stroke-dasharray="26.2 503" stroke-dashoffset="-199.7" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="80" fill="none" stroke="#ef4444" stroke-width="28"
+                    stroke-dasharray="25.2 503" stroke-dashoffset="-225.9" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="80" fill="none" stroke="#6b7280" stroke-width="28"
+                    stroke-dasharray="126 503" stroke-dashoffset="-251.1" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="58" fill="var(--surface)"/>
+            <text x="100" y="96" text-anchor="middle" class="donut-center">&#8377;47.97L</text>
+            <text x="100" y="114" text-anchor="middle" class="donut-sub">TOTAL</text>
+          </svg>
+          <div class="legend">
+            <div class="legend-row"><span class="legend-dot" style="background:#3b82f6"></span><span class="legend-name">Water Supply</span><span class="legend-val">31.8%</span></div>
+            <div class="legend-row"><span class="legend-dot" style="background:#8b5cf6"></span><span class="legend-name">Security & HK</span><span class="legend-val">20.7%</span></div>
+            <div class="legend-row"><span class="legend-dot" style="background:#f59e0b"></span><span class="legend-name">Electricity</span><span class="legend-val">12.2%</span></div>
+            <div class="legend-row"><span class="legend-dot" style="background:#10b981"></span><span class="legend-name">STP & WTP</span><span class="legend-val">5.2%</span></div>
+            <div class="legend-row"><span class="legend-dot" style="background:#ef4444"></span><span class="legend-name">Plumbing</span><span class="legend-val">5.0%</span></div>
+            <div class="legend-row"><span class="legend-dot" style="background:#6b7280"></span><span class="legend-name">All Others</span><span class="legend-val">25.1%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-box">
+        <div class="chart-title">Top 3 — Where the Money Goes</div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding-top:8px">
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span style="font-size:13px;font-weight:600">Water Supply</span>
+              <span style="font-size:13px;font-weight:700;color:#3b82f6">&#8377;15.23L</span>
+            </div>
+            <div class="hbar-track"><div class="hbar-fill" style="width:100%;background:linear-gradient(90deg,#3b82f6,#60a5fa);border-radius:6px"></div></div>
+            <div style="font-size:11px;color:var(--text3);margin-top:4px">2 tanker vendors + pool water | Q4: ₹7.39L → Q1: ₹7.84L (+6.1%)</div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span style="font-size:13px;font-weight:600">Security & Housekeeping</span>
+              <span style="font-size:13px;font-weight:700;color:#8b5cf6">&#8377;9.94L</span>
+            </div>
+            <div class="hbar-track"><div class="hbar-fill" style="width:65%;background:linear-gradient(90deg,#8b5cf6,#a78bfa);border-radius:6px"></div></div>
+            <div style="font-size:11px;color:var(--text3);margin-top:4px">Elite Protection Security Services | Q4: ₹5.01L → Q1: ₹4.93L (-1.6%)</div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span style="font-size:13px;font-weight:600">Electricity (BESCOM)</span>
+              <span style="font-size:13px;font-weight:700;color:#f59e0b">&#8377;5.83L</span>
+            </div>
+            <div class="hbar-track"><div class="hbar-fill" style="width:38%;background:linear-gradient(90deg,#f59e0b,#fbbf24);border-radius:6px"></div></div>
+            <div style="font-size:11px;color:var(--text3);margin-top:4px">2 BESCOM meters for common areas | Q4: ₹2.89L → Q1: ₹2.94L (+1.7%)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Quarter Comparison — All Categories</h2>
+    <p class="section-desc">Q4 2025 (lighter) vs Q1 2026 (brighter). Categories sorted by total spend.</p>
+
+    <div style="margin:12px 0 6px 0">
+      <div class="gbar-row"><div class="gbar-label">Water Supply</div><div class="gbar-bars"><div class="gbar-track"><div class="gbar-fill" style="width:74%;background:#3b82f6;opacity:0.5"></div></div><div class="gbar-track"><div class="gbar-fill" style="width:79%;background:#3b82f6"></div></div></div><div class="gbar-val">₹15.23L</div></div>
+      <div class="gbar-row"><div class="gbar-label">Security & HK</div><div class="gbar-bars"><div class="gbar-track"><div class="gbar-fill" style="width:50%;background:#8b5cf6;opacity:0.5"></div></div><div class="gbar-track"><div class="gbar-fill" style="width:49%;background:#8b5cf6"></div></div></div><div class="gbar-val">₹9.94L</div></div>
+      <div class="gbar-row"><div class="gbar-label">Electricity</div><div class="gbar-bars"><div class="gbar-track"><div class="gbar-fill" style="width:29%;background:#f59e0b;opacity:0.5"></div></div><div class="gbar-track"><div class="gbar-fill" style="width:30%;background:#f59e0b"></div></div></div><div class="gbar-val">₹5.83L</div></div>
+      <div class="gbar-row"><div class="gbar-label">Others & One-time</div><div class="gbar-bars"><div class="gbar-track"><div class="gbar-fill" style="width:6%;background:#6b7280;opacity:0.5"></div></div><div class="gbar-track"><div class="gbar-fill" style="width:27%;background:#6b7280"></div></div></div><div class="gbar-val">₹3.27L</div></div>
+      <div class="gbar-row"><div class="gbar-label">STP & WTP</div><div class="gbar-bars"><div class="gbar-track"><div class="gbar-fill" style="width:12%;background:#10b981;opacity:0.5"></div></div><div class="gbar-track"><div class="gbar-fill" style="width:13%;background:#10b981"></div></div></div><div class="gbar-val">₹2.48L</div></div>
+      <div class="gbar-row"><div class="gbar-label">Plumbing</div><div class="gbar-bars"><div class="gbar-track"><div class="gbar-fill" style="width:12%;background:#ef4444;opacity:0.5"></div></div><div class="gbar-track"><div class="gbar-fill" style="width:12%;background:#ef4444"></div></div></div><div class="gbar-val">₹2.39L</div></div>
+      <div class="gbar-row"><div class="gbar-label">Fogging & Garden</div><div class="gbar-bars"><div class="gbar-track"><div class="gbar-fill" style="width:7%;background:#14b8a6;opacity:0.5"></div></div><div class="gbar-track"><div class="gbar-fill" style="width:7%;background:#14b8a6"></div></div></div><div class="gbar-val">₹1.47L</div></div>
+      <div class="gbar-row"><div class="gbar-label">Salary</div><div class="gbar-bars"><div class="gbar-track"><div class="gbar-fill" style="width:7%;background:#64748b;opacity:0.5"></div></div><div class="gbar-track"><div class="gbar-fill" style="width:7%;background:#64748b"></div></div></div><div class="gbar-val">₹1.38L</div></div>
+      <div class="gbar-row"><div class="gbar-label">Generator & Fuel</div><div class="gbar-bars"><div class="gbar-track"><div class="gbar-fill" style="width:4%;background:#dc2626;opacity:0.5"></div></div><div class="gbar-track"><div class="gbar-fill" style="width:10%;background:#dc2626"></div></div></div><div class="gbar-val">₹1.32L</div></div>
+      <div class="gbar-row"><div class="gbar-label">Lift Maintenance</div><div class="gbar-bars"><div class="gbar-track"><div class="gbar-fill" style="width:7%;background:#78716c;opacity:0.5"></div></div><div class="gbar-track"><div class="gbar-fill" style="width:4%;background:#78716c"></div></div></div><div class="gbar-val">₹1.09L</div></div>
+    </div>
+    <div style="display:flex;gap:20px;justify-content:center;font-size:11px;color:var(--text3);">
+      <span><span style="display:inline-block;width:16px;height:6px;background:var(--accent);opacity:0.4;border-radius:3px;vertical-align:middle;margin-right:5px"></span>Q4 2025</span>
+      <span><span style="display:inline-block;width:16px;height:6px;background:var(--accent);border-radius:3px;vertical-align:middle;margin-right:5px"></span>Q1 2026</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Full Breakdown Table</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Category</th><th>Type</th><th class="num">Q4 2025</th><th class="num">Q1 2026</th><th class="num">Total</th><th class="num">Change</th><th class="num">Share</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Water Supply</strong></td><td>Contract</td><td class="num">₹7,38,815</td><td class="num">₹7,84,140</td><td class="num">₹15,22,955</td><td class="num"><span class="pill warn">+6.1%</span></td><td class="num">31.8%</td></tr>
+          <tr><td><strong>Security & HK</strong></td><td>Contract</td><td class="num">₹5,00,678</td><td class="num">₹4,92,909</td><td class="num">₹9,93,587</td><td class="num"><span class="pill down">-1.6%</span></td><td class="num">20.7%</td></tr>
+          <tr><td><strong>Electricity</strong></td><td>Utility</td><td class="num">₹2,89,007</td><td class="num">₹2,94,004</td><td class="num">₹5,83,011</td><td class="num"><span class="pill flat">+1.7%</span></td><td class="num">12.2%</td></tr>
+          <tr><td><strong>STP & WTP</strong></td><td>Contract</td><td class="num">₹1,20,000</td><td class="num">₹1,27,750</td><td class="num">₹2,47,750</td><td class="num"><span class="pill warn">+6.5%</span></td><td class="num">5.2%</td></tr>
+          <tr><td><strong>Plumbing</strong></td><td>Purchase</td><td class="num">₹1,15,920</td><td class="num">₹1,22,880</td><td class="num">₹2,38,800</td><td class="num"><span class="pill warn">+6.0%</span></td><td class="num">5.0%</td></tr>
+          <tr><td><strong>Generator & Fuel</strong></td><td>Purchase</td><td class="num">₹36,802</td><td class="num">₹95,346</td><td class="num">₹1,32,148</td><td class="num"><span class="pill up">+159%</span></td><td class="num">2.8%</td></tr>
+          <tr><td><strong>Fogging & Garden</strong></td><td>Contract</td><td class="num">₹73,500</td><td class="num">₹73,500</td><td class="num">₹1,47,000</td><td class="num"><span class="pill flat">0%</span></td><td class="num">3.1%</td></tr>
+          <tr><td><strong>Salary</strong></td><td>Salary</td><td class="num">₹69,000</td><td class="num">₹69,000</td><td class="num">₹1,38,000</td><td class="num"><span class="pill flat">0%</span></td><td class="num">2.9%</td></tr>
+          <tr><td><strong>Lift Maint.</strong></td><td>Contract</td><td class="num">₹66,269</td><td class="num">₹43,200</td><td class="num">₹1,09,469</td><td class="num"><span class="pill down">-34.8%</span></td><td class="num">2.3%</td></tr>
+          <tr><td><strong>Barriers/ParkPlus</strong></td><td>Contract</td><td class="num">₹43,188</td><td class="num">₹57,466</td><td class="num">₹1,00,654</td><td class="num"><span class="pill up">+33.1%</span></td><td class="num">2.1%</td></tr>
+          <tr><td><strong>BBMP Garbage</strong></td><td>Contract</td><td class="num">₹48,000</td><td class="num">₹48,000</td><td class="num">₹96,000</td><td class="num"><span class="pill flat">0%</span></td><td class="num">2.0%</td></tr>
+          <tr><td><strong>Salt for Softner</strong></td><td>Purchase</td><td class="num">₹30,000</td><td class="num">₹60,000</td><td class="num">₹90,000</td><td class="num"><span class="pill up">+100%</span></td><td class="num">1.9%</td></tr>
+          <tr><td><strong>Swimming Pool</strong></td><td>Contract</td><td class="num">₹31,925</td><td class="num">₹38,934</td><td class="num">₹70,859</td><td class="num"><span class="pill warn">+22%</span></td><td class="num">1.5%</td></tr>
+          <tr><td><strong>Others</strong></td><td>Misc</td><td class="num">₹60,441</td><td class="num">₹2,66,310</td><td class="num">₹3,26,751</td><td class="num"><span class="pill up">+340%</span></td><td class="num">6.8%</td></tr>
+          <tr class="total-row"><td colspan="2"><strong>GRAND TOTAL</strong></td><td class="num"><strong>₹22,23,545</strong></td><td class="num"><strong>₹25,73,439</strong></td><td class="num"><strong>₹47,96,984</strong></td><td class="num"><span class="pill warn">+15.7%</span></td><td class="num">100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══ TAB 2: MONTHLY ═══ -->
+  <div class="tab-panel" id="panel-monthly">
+    <h2>Monthly Expenditure Trend</h2>
+    <p class="section-desc">Month-by-month spending from Oct 2025 to Mar 2026. March 2026 was the highest month driven by STP rework and bulk purchases.</p>
+
+    <div class="chart-box" style="margin:16px 0">
+      <div class="chart-title">Monthly Spend (in Lakhs)</div>
+      <div class="spark-row">
+        <div class="spark-col">
+          <div class="spark-bar-area"><div class="spark-bar" style="height:74%;background:linear-gradient(to top,#4f46e5,#818cf8)"><span class="sv">₹7.35L</span></div></div>
+          <div class="spark-month">Oct</div><div class="spark-year">2025</div>
+        </div>
+        <div class="spark-col">
+          <div class="spark-bar-area"><div class="spark-bar" style="height:71%;background:linear-gradient(to top,#4f46e5,#818cf8)"><span class="sv">₹7.06L</span></div></div>
+          <div class="spark-month">Nov</div><div class="spark-year">2025</div>
+        </div>
+        <div class="spark-col">
+          <div class="spark-bar-area"><div class="spark-bar" style="height:79%;background:linear-gradient(to top,#4f46e5,#818cf8)"><span class="sv">₹7.83L</span></div></div>
+          <div class="spark-month">Dec</div><div class="spark-year">2025</div>
+        </div>
+        <div class="spark-col">
+          <div class="spark-bar-area"><div class="spark-bar" style="height:91%;background:linear-gradient(to top,#7c3aed,#a78bfa)"><span class="sv">₹9.01L</span></div></div>
+          <div class="spark-month">Jan</div><div class="spark-year">2026</div>
+        </div>
+        <div class="spark-col">
+          <div class="spark-bar-area"><div class="spark-bar" style="height:68%;background:linear-gradient(to top,#7c3aed,#a78bfa)"><span class="sv">₹6.78L</span></div></div>
+          <div class="spark-month">Feb</div><div class="spark-year">2026</div>
+        </div>
+        <div class="spark-col">
+          <div class="spark-bar-area"><div class="spark-bar" style="height:100%;background:linear-gradient(to top,#dc2626,#f87171)"><span class="sv" style="color:#f87171">₹9.94L</span></div></div>
+          <div class="spark-month">Mar</div><div class="spark-year">2026</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-box">
+        <div class="chart-title">Q4 2025 Breakdown</div>
+        <div style="font-size:24px;font-weight:700;color:var(--accent2);margin-bottom:12px">₹22.24L</div>
+        <div class="hbar" style="margin-bottom:16px">
+          <div class="hbar-row"><div class="hbar-label">October</div><div class="hbar-track"><div class="hbar-fill" style="width:94%;background:#4f46e5;border-radius:6px"></div></div><div class="hbar-val">₹7.35L</div></div>
+          <div class="hbar-row"><div class="hbar-label">November</div><div class="hbar-track"><div class="hbar-fill" style="width:90%;background:#6366f1;border-radius:6px"></div></div><div class="hbar-val">₹7.06L</div></div>
+          <div class="hbar-row"><div class="hbar-label">December</div><div class="hbar-track"><div class="hbar-fill" style="width:100%;background:#818cf8;border-radius:6px"></div></div><div class="hbar-val">₹7.83L</div></div>
+        </div>
+        <div style="font-size:12px;color:var(--text3)">Avg: ₹7.41L/month</div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">Q1 2026 Breakdown</div>
+        <div style="font-size:24px;font-weight:700;color:var(--accent2);margin-bottom:12px">₹25.73L</div>
+        <div class="hbar" style="margin-bottom:16px">
+          <div class="hbar-row"><div class="hbar-label">January</div><div class="hbar-track"><div class="hbar-fill" style="width:91%;background:#7c3aed;border-radius:6px"></div></div><div class="hbar-val">₹9.01L</div></div>
+          <div class="hbar-row"><div class="hbar-label">February</div><div class="hbar-track"><div class="hbar-fill" style="width:68%;background:#8b5cf6;border-radius:6px"></div></div><div class="hbar-val">₹6.78L</div></div>
+          <div class="hbar-row"><div class="hbar-label">March</div><div class="hbar-track"><div class="hbar-fill" style="width:100%;background:#a78bfa;border-radius:6px"></div></div><div class="hbar-val">₹9.94L</div></div>
+        </div>
+        <div style="font-size:12px;color:var(--text3)">Avg: ₹8.58L/month (+15.7% vs Q4)</div>
+      </div>
+    </div>
+
+    <h3>Month with Lowest vs Highest Spend</h3>
+    <div class="stats-grid" style="grid-template-columns:1fr 1fr">
+      <div class="stat-card" style="border-left:4px solid var(--green)">
+        <div class="stat-value" style="color:var(--green)">₹6.78L</div>
+        <div class="stat-label">Feb 2026 — Lowest Month</div>
+      </div>
+      <div class="stat-card" style="border-left:4px solid var(--red)">
+        <div class="stat-value" style="color:var(--red)">₹9.94L</div>
+        <div class="stat-label">Mar 2026 — Highest Month</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB 3: VENDORS ═══ -->
+  <div class="tab-panel" id="panel-vendors">
+    <h2>Top Vendors by Spend</h2>
+    <p class="section-desc">The 8 largest vendors account for over 85% of all expenditure.</p>
+
+    <div class="vendor-grid">
+      <div class="vcard" style="border-top:3px solid #8b5cf6">
+        <div class="vcard-name">Elite Protection Security</div>
+        <div class="vcard-svc">Housekeeping & Security</div>
+        <div class="vcard-amt">₹9.66L</div>
+        <div class="vcard-detail">Q4: ₹4.84L &rarr; Q1: ₹4.82L</div>
+        <div class="vcard-detail"><span class="pill down">-0.4%</span></div>
+      </div>
+      <div class="vcard" style="border-top:3px solid #3b82f6">
+        <div class="vcard-name">Sri Anelingeswara Minerals</div>
+        <div class="vcard-svc">SAL Water Tanker</div>
+        <div class="vcard-amt">₹9.50L</div>
+        <div class="vcard-detail">Q4: ₹4.51L &rarr; Q1: ₹4.99L</div>
+        <div class="vcard-detail"><span class="pill warn">+10.7%</span></div>
+      </div>
+      <div class="vcard" style="border-top:3px solid #f59e0b">
+        <div class="vcard-name">BESCOM</div>
+        <div class="vcard-svc">Common Area Electricity</div>
+        <div class="vcard-amt">₹5.83L</div>
+        <div class="vcard-detail">Q4: ₹2.89L &rarr; Q1: ₹2.94L</div>
+        <div class="vcard-detail"><span class="pill flat">+1.7%</span></div>
+      </div>
+      <div class="vcard" style="border-top:3px solid #60a5fa">
+        <div class="vcard-name">Sri Lakshmi Siddeshwara</div>
+        <div class="vcard-svc">Water Tanker 1</div>
+        <div class="vcard-amt">₹5.67L</div>
+        <div class="vcard-detail">Q4: ₹2.83L &rarr; Q1: ₹2.85L</div>
+        <div class="vcard-detail"><span class="pill flat">+0.7%</span></div>
+      </div>
+    </div>
+    <div class="vendor-grid">
+      <div class="vcard" style="border-top:3px solid #10b981">
+        <div class="vcard-name">Kushappa R Shinde</div>
+        <div class="vcard-svc">STP & WTP Maintenance</div>
+        <div class="vcard-amt">₹2.48L</div>
+        <div class="vcard-detail">Q4: ₹1.20L &rarr; Q1: ₹1.28L</div>
+        <div class="vcard-detail"><span class="pill warn">+6.5%</span></div>
+      </div>
+      <div class="vcard" style="border-top:3px solid #14b8a6">
+        <div class="vcard-name">Rajdeep Enterprises</div>
+        <div class="vcard-svc">Fogging, Gardening & HK</div>
+        <div class="vcard-amt">₹1.86L</div>
+        <div class="vcard-detail">Q4: ₹0.90L &rarr; Q1: ₹0.96L</div>
+        <div class="vcard-detail"><span class="pill warn">+6.4%</span></div>
+      </div>
+      <div class="vcard" style="border-top:3px solid #ef4444">
+        <div class="vcard-name">Krishna Hardware</div>
+        <div class="vcard-svc">Plumbing Material</div>
+        <div class="vcard-amt">₹1.22L</div>
+        <div class="vcard-detail">Q4: ₹0.64L &rarr; Q1: ₹0.59L</div>
+        <div class="vcard-detail"><span class="pill down">-7.4%</span></div>
+      </div>
+      <div class="vcard" style="border-top:3px solid #dc2626">
+        <div class="vcard-name">Treis / United / MR Ent.</div>
+        <div class="vcard-svc">Generator Diesel</div>
+        <div class="vcard-amt">₹1.03L</div>
+        <div class="vcard-detail">Q4: ₹0.37L &rarr; Q1: ₹0.66L</div>
+        <div class="vcard-detail"><span class="pill up">+80.3%</span></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>Water Supply — Cost Split</h3>
+    <p class="section-desc">Water is the #1 cost. SAL Water (Sri Anelingeswara) accounts for 62% of all water spend.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Supplier</th><th>Type</th><th class="num">Q4 2025</th><th class="num">Q1 2026</th><th class="num">6-Month Total</th><th class="num">Share</th></tr></thead>
+        <tbody>
+          <tr><td>Sri Anelingeswara Minerals</td><td>SAL Water Tanker</td><td class="num">₹4,51,000</td><td class="num">₹4,99,400</td><td class="num">₹9,50,400</td><td class="num">62.4%</td></tr>
+          <tr><td>Sri Lakshmi Siddeshwara</td><td>Water Tanker 1</td><td class="num">₹2,82,740</td><td class="num">₹2,84,740</td><td class="num">₹5,67,480</td><td class="num">37.3%</td></tr>
+          <tr><td>Cumins Genesis / Lakshana</td><td>Pool Water</td><td class="num">₹5,075</td><td class="num">—</td><td class="num">₹5,075</td><td class="num">0.3%</td></tr>
+          <tr class="total-row"><td colspan="2"><strong>Total Water</strong></td><td class="num"><strong>₹7,38,815</strong></td><td class="num"><strong>₹7,84,140</strong></td><td class="num"><strong>₹15,22,955</strong></td><td class="num">100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══ TAB 4: ONE-TIME ═══ -->
+  <div class="tab-panel" id="panel-onetime">
+    <h2>One-time & Capital Expenses</h2>
+    <p class="section-desc">Non-recurring purchases in Q1 2026 that inflated the quarter's total. Without these, recurring costs grew only 3.8%.</p>
+
+    <div class="stats-grid" style="grid-template-columns:1fr 1fr 1fr;margin-bottom:20px">
+      <div class="stat-card" style="border-top:3px solid var(--amber)">
+        <div class="stat-value" style="color:var(--amber)">₹2.82L</div>
+        <div class="stat-label">Total One-time Items</div>
+      </div>
+      <div class="stat-card" style="border-top:3px solid var(--green)">
+        <div class="stat-value" style="color:var(--green)">₹23.07L</div>
+        <div class="stat-label">Q1 Recurring Only</div>
+      </div>
+      <div class="stat-card" style="border-top:3px solid var(--blue)">
+        <div class="stat-value" style="color:var(--blue)">+3.8%</div>
+        <div class="stat-label">Recurring QoQ Growth</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Item</th><th>Vendor</th><th class="num">Amount</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><strong>STP Rework</strong></td><td>Lokamantri Enviro Protection</td><td class="num">₹1,00,000</td><td>Sewage treatment plant overhaul</td></tr>
+          <tr><td><strong>Garbage Dustbins</strong></td><td>Buymore Ecommerce</td><td class="num">₹51,542</td><td>Bulk dustbin purchase</td></tr>
+          <tr><td><strong>Generator Battery</strong></td><td>Jai Hanuman Battery</td><td class="num">₹29,000</td><td>Backup generator battery</td></tr>
+          <tr><td><strong>Garbage Area Work</strong></td><td>Multiple vendors</td><td class="num">₹27,400</td><td>Cleaning, plants, hanging pots, banner</td></tr>
+          <tr><td><strong>Motor Repair</strong></td><td>Muneeswaran Electricals</td><td class="num">₹17,000</td><td>Building system motor repairs</td></tr>
+          <tr><td><strong>CCTV Monitor</strong></td><td>Amazon</td><td class="num">₹15,010</td><td>TV for CCTV surveillance</td></tr>
+          <tr><td><strong>Staircase Lights</strong></td><td>Tilak Prasad</td><td class="num">₹12,950</td><td>BF & GF staircase lighting</td></tr>
+          <tr><td><strong>Foldable Ladder</strong></td><td>Amazon</td><td class="num">₹11,990</td><td>Maintenance equipment</td></tr>
+          <tr><td><strong>Panel ATS Fixing</strong></td><td>Roshan Infra Solutions</td><td class="num">₹8,500</td><td>Auto transfer switch</td></tr>
+          <tr><td><strong>Pool Lights & Welding</strong></td><td>Hydrotech / Mubarak</td><td class="num">₹8,934</td><td>Pool lights + railing welding</td></tr>
+          <tr class="total-row"><td colspan="2"><strong>TOTAL</strong></td><td class="num"><strong>₹2,82,326</strong></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Impact Visualization</h3>
+    <div class="chart-box">
+      <div style="display:flex;align-items:center;gap:24px">
+        <svg width="180" height="180" viewBox="0 0 180 180">
+          <circle cx="90" cy="90" r="72" fill="none" stroke="#2a2d3a" stroke-width="24"/>
+          <circle cx="90" cy="90" r="72" fill="none" stroke="#6366f1" stroke-width="24"
+                  stroke-dasharray="394 452.4" stroke-dashoffset="113.1" transform="rotate(-90 90 90)"/>
+          <circle cx="90" cy="90" r="72" fill="none" stroke="#fbbf24" stroke-width="24"
+                  stroke-dasharray="58 452.4" stroke-dashoffset="-281" transform="rotate(-90 90 90)"/>
+          <circle cx="90" cy="90" r="52" fill="var(--surface)"/>
+          <text x="90" y="86" text-anchor="middle" font-size="14" font-weight="700" fill="var(--text)">89.7%</text>
+          <text x="90" y="102" text-anchor="middle" font-size="10" fill="var(--text3)">Recurring</text>
+        </svg>
+        <div>
+          <div style="margin-bottom:12px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+              <span style="width:12px;height:12px;border-radius:3px;background:#6366f1"></span>
+              <span style="font-size:13px;font-weight:600">Recurring: ₹23.07L</span>
+            </div>
+            <div style="font-size:12px;color:var(--text3)">Regular contracts, utilities, salaries — stable operational base</div>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+              <span style="width:12px;height:12px;border-radius:3px;background:#fbbf24"></span>
+              <span style="font-size:13px;font-weight:600">One-time: ₹2.66L</span>
+            </div>
+            <div style="font-size:12px;color:var(--text3)">Capital purchases & infrastructure repairs — not expected to repeat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>Receipts & Income</h3>
+    <div class="stats-grid" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="stat-card" style="border-top:3px solid var(--green)">
+        <div class="stat-value" style="color:var(--green)">₹10,421</div>
+        <div class="stat-label">Q4 2025 Receipts</div>
+      </div>
+      <div class="stat-card" style="border-top:3px solid var(--green)">
+        <div class="stat-value" style="color:var(--green)">₹20,887</div>
+        <div class="stat-label">Q1 2026 Receipts</div>
+      </div>
+      <div class="stat-card" style="border-top:3px solid var(--blue)">
+        <div class="stat-value" style="color:var(--blue)">+100%</div>
+        <div class="stat-label">Receipt Growth</div>
+      </div>
+    </div>
+    <p class="section-desc">Sources: NoBroker referral income, party hall bookings, move-in fees, and ParkPlus sticker sales. March saw a large spike in ParkPlus sticker revenue from new registrations.</p>
+  </div>
+
+  <!-- ═══ TAB 5: INSIGHTS ═══ -->
+  <div class="tab-panel" id="panel-insights">
+    <h2>Key Insights & Recommendations</h2>
+    <p class="section-desc">Summary of findings from the 6-month expenditure analysis.</p>
+
+    <div class="insight-grid">
+      <div class="insight g">
+        <div class="insight-t">Stable Core Operations</div>
+        <div class="insight-d">Fogging (₹73.5K), BBMP Garbage (₹48K), and Manager Salary (₹69K) remained perfectly flat across both quarters — no cost creep. Recurring expenses grew only 3.8% QoQ when one-time items are excluded.</div>
+      </div>
+      <div class="insight r">
+        <div class="insight-t">Water is 31.8% of All Spend</div>
+        <div class="insight-d">At ₹15.23L over 6 months (₹2.54L/month), water supply is the single largest cost. SAL Water Tanker alone is ₹9.50L. Exploring rainwater harvesting or bore well optimization could significantly reduce costs.</div>
+      </div>
+      <div class="insight a">
+        <div class="insight-t">Generator Costs Tripled (+159%)</div>
+        <div class="insight-d">From ₹36.8K to ₹95.3K — driven by battery replacement (₹29K) and higher diesel consumption from 3 different vendors. Consider consolidating to a single diesel supplier for better rates.</div>
+      </div>
+      <div class="insight b">
+        <div class="insight-t">Salt Consumption Doubled (+100%)</div>
+        <div class="insight-d">4 refills in Q1 vs 2 in Q4 at ₹15K each. This could indicate higher water hardness or increased water processing. Worth investigating if softener efficiency has dropped.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="insight-grid">
+      <div class="insight g">
+        <div class="insight-t">Lift Costs Dropped 35%</div>
+        <div class="insight-d">₹66.3K → ₹43.2K. Q4 included ₹23K in spare parts that didn't recur. The quarterly maintenance contract of ₹43.2K (₹14.4K/month) appears reasonable.</div>
+      </div>
+      <div class="insight a">
+        <div class="insight-t">Plumbing is a Recurring Drain</div>
+        <div class="insight-d">₹2.39L over 6 months across material purchases and labor. December alone saw ₹62.7K in plumbing material. Consider a preventive maintenance program to reduce reactive plumbing costs.</div>
+      </div>
+      <div class="insight b">
+        <div class="insight-t">Receipts Growing Fast (+100%)</div>
+        <div class="insight-d">₹10.4K → ₹20.9K. ParkPlus sticker sales surged in March. Expanding revenue sources (hall rentals, advertising, etc.) could help offset common area expenses.</div>
+      </div>
+      <div class="insight r">
+        <div class="insight-t">Capital Investments Needed</div>
+        <div class="insight-d">STP rework (₹1L), dustbins (₹51.5K), CCTV (₹15K), and other infrastructure items suggest the building needs ongoing capital investment. Budget ₹50K-₹1L/quarter for such items.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>Cost Optimization Opportunities</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Area</th><th>Current Spend</th><th>Opportunity</th><th>Potential Saving</th></tr></thead>
+        <tbody>
+          <tr><td>Water Supply</td><td>₹2.54L/month</td><td>Rainwater harvesting, bore well optimization</td><td>10-20%</td></tr>
+          <tr><td>Generator Diesel</td><td>₹0.66L/quarter</td><td>Consolidate to single vendor, negotiate bulk rate</td><td>10-15%</td></tr>
+          <tr><td>Plumbing</td><td>₹0.40L/month</td><td>Preventive maintenance program</td><td>15-25%</td></tr>
+          <tr><td>Salt for Softner</td><td>₹0.20L/quarter</td><td>Check softener efficiency, water quality</td><td>Variable</td></tr>
+          <tr><td>Receipts</td><td>₹0.07L/quarter</td><td>Increase hall bookings, parking revenue</td><td>Revenue uplift</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    Srimitra Lifestyle &middot; Expenditure Analysis &middot; Oct 2025 – Mar 2026 &middot; Generated from bank transaction records
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
